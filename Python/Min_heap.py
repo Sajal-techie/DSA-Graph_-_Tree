@@ -7,7 +7,7 @@ class MinHeap:
         parent_index = (index - 1)//2
         if parent_index >= 0 and self.heap[parent_index] > self.heap[index]:
             self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]
-            return self.heapify_up(parent_index)
+            self.heapify_up(parent_index)
 
     def heapify_down(self, index):
         left = (index * 2) + 1
@@ -55,12 +55,15 @@ class MinHeap:
 
 
 heap1 = MinHeap()
-heap1.insert(10)
-heap1.insert(6)
-heap1.insert(20)
-heap1.insert(25)
-heap1.insert(3)
-heap1.insert(8)
+# heap1.insert(10)
+# heap1.insert(6)
+# heap1.insert(20)
+# heap1.insert(25)
+# heap1.insert(3)
+# heap1.insert(8)
+arr = [3,57,1,54,8,2,878,5]
+for i in arr:
+    heap1.insert(i)
 heap1.display()
 print(heap1.delete(200))
 heap1.pop()
