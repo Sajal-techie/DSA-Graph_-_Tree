@@ -12,14 +12,14 @@ class MaxHeap:
     def heapify_down(self, index):
         left_child = (index * 2) + 1
         right_child = (index * 2) + 2
-        smallest = index
-        if left_child < len(self.heap) and self.heap[left_child] > self.heap[smallest]:
-            smallest = left_child
-        if right_child < len(self.heap) and self.heap[right_child] > self.heap[smallest]:
-            smallest = right_child
-        if index != smallest:
-            self.heap[smallest], self.heap[index] = self.heap[index], self.heap[smallest]
-            self.heapify_down(smallest)
+        largest = index
+        if left_child < len(self.heap) and self.heap[left_child] > self.heap[largest]:
+            largest = left_child
+        if right_child < len(self.heap) and self.heap[right_child] > self.heap[largest]:
+            largest = right_child
+        if index != largest:
+            self.heap[largest], self.heap[index] = self.heap[index], self.heap[largest]
+            self.heapify_down(largest)
 
     def insert(self, data):
         self.heap.append(data)
