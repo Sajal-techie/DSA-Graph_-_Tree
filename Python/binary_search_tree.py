@@ -9,7 +9,7 @@ class BST:
             self.key = data
             return
         if self.key == data:
-            return 
+            return
         if self.key > data:
             if self.lchild:
                 self.lchild.insert(data)
@@ -63,12 +63,12 @@ class BST:
             return
         if self.key > data:
             if self.lchild:
-                self.lchild = self.lchild.delete(data,curr)
+                self.lchild = self.lchild.delete(data, curr)
             else:
                 print("element is not on tree")
         elif self.key < data:
             if self.rchild:
-                self.rchild = self.rchild.delete(data,curr)
+                self.rchild = self.rchild.delete(data, curr)
             else:
                 print("this element is not in this tree")
         else:
@@ -98,7 +98,7 @@ class BST:
             while node.lchild is not None:
                 node = node.lchild
             self.key = node.key
-            self.rchild = self.rchild.delete(node.key,curr)
+            self.rchild = self.rchild.delete(node.key, curr)
         return self
 
     def count(self, node):
@@ -141,11 +141,38 @@ class BST:
         else:
             return False
 
+    def lowest_common_ancestor(self, n1, n2):
+        path1 = []
+        path2 = []
+
+        def findnode(root, path, k):
+            if root is None:
+                return False
+            path.append(root.key)
+            if root.key == k:
+                return True
+            if (root.lchild is not None and findnode(root.lchild, path, k)) or root.rchild is not None and findnode(
+                    root.rchild, path, k):
+                return True
+
+            path.pop()
+            return False
+
+        if (not findnode(self, path1, n1)) or not findnode(self, path2, n2):
+            return -1
+        i = 0
+        while i < len(path1) and i < len(path2):
+            if path1[i] != path2[i]:
+                break
+            i += 1
+        return path1[i - 1]
+
 
 tree = BST(10)
-arr = [7,6,3,1,5,12]
+arr = [7, 6, 3, 1, 5, 12]
 for i in arr:
     tree.insert(i)
+print(tree.lowest_common_ancestor(1, 5), 'lm')
 print(tree.count(tree))
 tree.search(9)
 tree.preorder()
