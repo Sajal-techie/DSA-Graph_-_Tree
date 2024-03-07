@@ -14,7 +14,6 @@ def heapify_down(arr, n, index):
 
 def heapsort(arr):
     n = len(arr)
-    first = []
     for i in range(n//2-1, -1, -1):
         heapify_down(arr,n,i)
     print(arr)

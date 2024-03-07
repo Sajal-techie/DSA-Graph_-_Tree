@@ -40,7 +40,7 @@ class MinHeap:
 
     def pop(self):
         if len(self.heap) == 0:
-            print("linked list is empty")
+            print("Heap is empty")
             return False
         if len(self.heap) == 1:
             return self.heap.pop()
@@ -65,6 +65,6 @@ arr = [3,57,1,54,8,2,878,5]
 for i in arr:
     heap1.insert(i)
 heap1.display()
-print(heap1.delete(200))
+print(heap1.delete(2))
 heap1.pop()
 heap1.display()
