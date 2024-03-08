@@ -39,7 +39,7 @@ class Trie:
 
             if delete_node:
                 del node.children[char]
-                return len(node.children) == 0
+                return len(node.children) == 0 and not node.is_end
             return False
 
         delete_recurse(self.root, words, 0)
@@ -63,10 +63,10 @@ class Trie:
 
 trie = Trie()
 trie.insert('apple')
-trie.insert('ape')
+trie.insert('app')
 trie.insert('ant')
 print(trie.search('apple'))
-# print(trie.delete('ape'))
+print(trie.delete('apple'))
 print(trie.search('ape'))
 print(trie.search('appl'))
 print(trie.prefix_search('ap'))
