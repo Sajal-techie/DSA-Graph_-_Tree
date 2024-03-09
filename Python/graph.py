@@ -30,18 +30,30 @@ class Graph:
         else:
             print('vertex or edge not in graph')
 
-    def dfs(self):
-        visited = set()
-        for start in self.graph:
-            if start not in visited:
-                self.dfs_recurse(start, visited)
+    ## to search through all vertex without starting value
 
-    def dfs_recurse(self, vertex, visited):
-        visited.add(vertex)
-        print(vertex, end=" ")
-        for i in self.graph[vertex]:
-            if i not in visited:
-                self.dfs_recurse(i,visited)
+    # def dfs(self):
+    #     visited = set()
+    #     for start in self.graph:
+    #         if start not in visited:
+    #             self.dfs_recurse(start, visited)
+    #
+    # def dfs_recurse(self, vertex, visited):
+    #     visited.add(vertex)
+    #     print(vertex, end=" ")
+    #     for i in self.graph[vertex]:
+    #         if i not in visited:
+    #             self.dfs_recurse(i,visited)
+
+    def dfs(self, node, visited=set()):
+        if node not in self.graph:
+            print("node not in graph")
+            return
+        if node not in visited:
+            visited.add(node)
+            print(node, end=" ")
+            for i in self.graph[node]:
+                self.dfs(i, visited)
 
     def bfs(self, start):
         visited = set()
@@ -62,19 +74,21 @@ class Graph:
 
 
 graph = Graph()
-graph.add_vertex(0)
-graph.add_vertex(3)
-graph.add_vertex(2)
-graph.add_vertex(1)
-graph.add_edge(0,3)
-graph.add_edge(0,2)
-graph.add_edge(0,1)
-graph.add_edge(2,1)
-print(graph)
-# graph.delete_vertex(5)
-# graph.delete_edge(5,4)
-print(graph)
-graph.dfs()
-print()
-graph.bfs(0)
-print()
+graph.add_vertex('A')
+graph.add_vertex('B')
+graph.add_vertex('C')
+graph.add_vertex('D')
+graph.add_vertex('E')
+graph.add_vertex('F')
+graph.add_edge('A', 'B')
+graph.add_edge('A', 'C')
+graph.add_edge('A', 'D')
+graph.add_edge('B', 'D')
+graph.add_edge('C', 'D')
+graph.add_edge('C', 'E')
+# graph.delete_vertex('A')
+graph.delete_edge('A','B')
+print('dfs')
+graph.dfs("A")
+print('\nbfs')
+graph.bfs("A")
